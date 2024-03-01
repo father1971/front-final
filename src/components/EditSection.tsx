@@ -29,6 +29,7 @@ export const EditSection: React.FC<EditSectionInterface> = ({
       completed: taskToEdit.completed,
     };
     onComplete(taskBody);
+    onClose();
   }
 
   function deleteTask() {
