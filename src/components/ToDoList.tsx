@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../colors';
 import { Task } from '../commonTypes';
-import { testTasks } from '../testData';
 import { Header } from './Header';
 import { TaskList } from './TaskList';
 import { AddSection } from './AddSection';
@@ -10,7 +9,7 @@ import { TaskBody } from '../commonTypes';
 import { EditSection } from './EditSection';
 
 export const ToDoList: React.FC = () => {
-  const [currentTasks, setCurrentTasks] = React.useState<Task[]>(testTasks);
+  const [currentTasks, setCurrentTasks] = React.useState<Task[]>([]);
   const [addSectionOpen, setAddSectionOpen] = React.useState(false);
   const [taskToEdit, setTaskToEdit] = React.useState<Task | undefined>();
 
