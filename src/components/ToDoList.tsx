@@ -7,10 +7,12 @@ import { Header } from './Header';
 import { TaskList } from './TaskList';
 import { AddSection } from './AddSection';
 import { TaskBody } from '../commonTypes';
+import { EditSection } from './EditSection';
 
 export const ToDoList: React.FC = () => {
   const [currentTasks, setCurrentTasks] = React.useState<Task[]>(testTasks);
   const [addSectionOpen, setAddSectionOpen] = React.useState(false);
+  const [taskToEdit, setTaskToEdit] = React.useState<Task | undefined>();
 
   function openAddTaskSection() {
     setAddSectionOpen(true);
@@ -62,7 +64,62 @@ export const ToDoList: React.FC = () => {
   }
 
   function openEditTaskSection(id: string) {
-    alert('Edit task');
+    const taskToChange = currentTasks.find(function (task) {
+      if (task.id === id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    setTaskToEdit(taskToChange);
+  }
+
+  function editTask(taskBody: TaskBody) {
+    if (taskToEdit === undefined) {
+      return;
+    }
+
+    const taskToChange = currentTasks.find(function (task) {
+      if (task.id === taskToEdit.id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    if (taskToChange === undefined) {
+      return;
+    }
+
+    const newTask: Task = {
+      id: taskToChange.id,
+      name: taskBody.name,
+      completed: taskBody.completed,
+      deadline: taskBody.deadline,
+    };
+
+    const taskToChangeIndex = currentTasks.indexOf(taskToChange);
+
+    const newTasks = currentTasks.slice();
+    newTasks.splice(taskToChangeIndex, 1, newTask);
+
+    setCurrentTasks(newTasks);
+  }
+
+  function deleteTask(id: string) {
+    const newTasks = currentTasks.filter(function (task) {
+      if (task.id !== id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setCurrentTasks(newTasks);
+  }
+
+  function closeEditTaskSection() {
+    setTaskToEdit(undefined);
   }
 
   return (
@@ -78,7 +135,14 @@ export const ToDoList: React.FC = () => {
         onComplete={addTask}
         onClose={closeAddTaskSection}
       />
-      {/* <AddTask/> */}
+      {taskToEdit !== undefined ? (
+        <EditSection
+          taskToEdit={taskToEdit}
+          onComplete={editTask}
+          onDelete={deleteTask}
+          onClose={closeEditTaskSection}
+        />
+      ) : undefined}
     </Container>
   );
 };
