@@ -5,12 +5,19 @@ import { Task } from '../commonTypes';
 import { testTasks } from '../testData';
 import { Header } from './Header';
 import { TaskList } from './TaskList';
+import { AddSection } from './AddSection';
+import { TaskBody } from '../commonTypes';
 
 export const ToDoList: React.FC = () => {
   const [currentTasks, setCurrentTasks] = React.useState<Task[]>(testTasks);
+  const [addSectionOpen, setAddSectionOpen] = React.useState(false);
 
   function openAddTaskSection() {
-    alert('AddTask');
+    setAddSectionOpen(true);
+  }
+
+  function closeAddTaskSection() {
+    setAddSectionOpen(false);
   }
 
   function markTask(id: string, completed: boolean) {
@@ -41,6 +48,19 @@ export const ToDoList: React.FC = () => {
     setCurrentTasks(newTasks);
   }
 
+  function addTask(taskBody: TaskBody) {
+    const newTask: Task = {
+      id: Date.now().toString(),
+      name: taskBody.name,
+      completed: taskBody.completed,
+      deadline: taskBody.deadline,
+    };
+
+    const newTasks = currentTasks.slice();
+    newTasks.push(newTask);
+    setCurrentTasks(newTasks);
+  }
+
   function openEditTaskSection(id: string) {
     alert('Edit task');
   }
@@ -53,7 +73,11 @@ export const ToDoList: React.FC = () => {
         onTaskMarked={markTask}
         onEditTask={openEditTaskSection}
       />
-      {/* <AddTask/> */}
+      <AddSection
+        open={addSectionOpen}
+        onComplete={addTask}
+        onClose={closeAddTaskSection}
+      />
       {/* <AddTask/> */}
     </Container>
   );
