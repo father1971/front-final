@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Перед запуском
+
+Необходимо установить все зависимости при помощи команды
+
+`npm install`
+
+И создать в папке проекта файл с именем .env, в котором должна быть
+настройка
+
+REACT_APP_BASE_URL=http://localhost:8000 (замени на адрес бек-энда
+без слеша на конце)
+
 ## Available Scripts
 
 In the project directory, you can run:
