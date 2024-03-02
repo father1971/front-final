@@ -34,7 +34,7 @@ const Container = styled.div({
   paddingBottom: 12,
 
   backgroundColor: colors.header,
-  color: colors.text,
+  color: colors.textHeader,
 });
 
 const AddTaskButton = styled.div({

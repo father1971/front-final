@@ -69,7 +69,7 @@ const TaskInfo = styled.div({
 const TaskName = styled.div<{ completed: boolean }>(({ completed }) => {
   return {
     textAlign: 'start',
-    color: colors.text,
+    color: colors.textTask,
     fontSize: '16px',
     lineHeight: '22px',
     textDecoration: completed ? 'line-through' : 'none',
