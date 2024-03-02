@@ -28,6 +28,7 @@ export const AddSection: React.FC<AddSectionInterface> = ({
       completed: false,
     };
     onComplete(taskBody);
+    onClose();
   }
 
   return (
