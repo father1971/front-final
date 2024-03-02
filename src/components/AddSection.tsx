@@ -31,6 +31,13 @@ export const AddSection: React.FC<AddSectionInterface> = ({
     onClose();
   }
 
+  React.useEffect(
+    function () {
+      setTaskName('');
+    },
+    [open]
+  );
+
   return (
     <Container open={open}>
       <Content>
