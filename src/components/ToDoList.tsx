@@ -27,6 +27,7 @@ export const ToDoList: React.FC = () => {
 
   function openAddTaskSection() {
     setAddSectionOpen(true);
+    closeEditTaskSection();
   }
 
   function closeAddTaskSection() {
@@ -79,8 +80,8 @@ export const ToDoList: React.FC = () => {
         return false;
       }
     });
-
     setTaskToEdit(taskToChange);
+    closeAddTaskSection();
   }
 
   function editTask(taskBody: TaskBody) {
