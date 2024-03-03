@@ -98,7 +98,7 @@ const TaskNotCompletedButton = styled.div({
   borderRadius: 8,
   borderWidth: 1,
   borderStyle: 'solid',
-  borderColor: colors.text,
+  borderColor: colors.textHeader,
 
   cursor: 'pointer',
   userSelect: 'none',
