@@ -80,7 +80,7 @@ const TaskName = styled.div<{ completed: boolean }>(({ completed }) => {
 const TaskTime = styled.div<{ isLate: boolean }>(({ isLate }) => {
   return {
     textAlign: 'start',
-    color: isLate ? colors.redText : colors.text,
+    color: isLate ? colors.redText : colors.textHeader,
     fontSize: '14px',
     lineHeight: '18px',
   };
